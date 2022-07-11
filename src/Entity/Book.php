@@ -14,9 +14,6 @@ class Book
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Author;
-
-    #[ORM\Column(type: 'string', length: 255)]
     private $Title;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -25,18 +22,6 @@ class Book
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->Author;
-    }
-
-    public function setAuthor(string $Author): self
-    {
-        $this->Author = $Author;
-
-        return $this;
     }
 
     public function getTitle(): ?string
