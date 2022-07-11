@@ -19,6 +19,9 @@ class Book
     #[ORM\Column(type: 'string', length: 255)]
     private $Resume;
 
+    #[ORM\ManyToOne(targetEntity: Author::class, inversedBy: 'Books')]
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Book
     public function setResume(string $Resume): self
     {
         $this->Resume = $Resume;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
