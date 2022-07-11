@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use App\Entity\Author;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
@@ -14,29 +15,28 @@ class Book
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Author;
-
-    #[ORM\Column(type: 'string', length: 255)]
     private $Title;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $Resume;
+
+    #[ORM\ManyToOne(targetEntity: Author::class, inversedBy: 'Books')]
+    #[ORM\JoinColumn(nullable: false)]
+    private Author $author;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): ?Author
     {
-        return $this->Author;
+        return $this->author;
     }
 
-    public function setAuthor(string $Author): self
+    public function setAuthor(?Author $author): self
     {
-        $this->Author = $Author;
-
-        return $this;
+        $this->author = $author;
     }
 
     public function getTitle(): ?string
